@@ -1,33 +1,26 @@
-'use strict'
+"use strict";
 
-const { MongoClient } = require('mongodb')
-const {
-  DB_USER,
-  DB_PASSWD,
-  DB_HOST,
-  DB_PORT,
-  DB_NAME
-} = process.env
+const { MongoClient } = require("mongodb");
+const { MONGODB_URL, DB_NAME } = process.env;
 
-const mongoUrl = `mongodb://localhost/solutic4`
-let connection
+const mongoUrl = MONGODB_URL;
+let connection;
 
-async function connectDB () {
-  if (connection) return connection
+async function connectDB() {
+  if (connection) return connection;
 
-  let client
+  let client;
   try {
     client = await MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true
-    })
-    connection = client.db(DB_NAME)
+      useNewUrlParser: true,
+    });
+    connection = client.db(DB_NAME);
   } catch (error) {
-    console.error('Could not connect to db', mongoUrl, error)
-    process.exit(1)
+    console.error("Could not connect to db", mongoUrl, error);
+    process.exit(1);
   }
 
-  return connection
+  return connection;
 }
 
-module.exports = connectDB
-
+module.exports = connectDB;
