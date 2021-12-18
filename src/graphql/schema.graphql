@@ -1,0 +1,181 @@
+   enum Rol {
+        Administrador
+        Lider
+        Estudiante
+    }
+
+    enum Estado {
+        Pendiente
+        Autorizado
+        No_Autorizado
+    }
+    enum EstadoProyecto{
+        Inactivo
+        Activo
+    }
+
+    enum Faseproyecto{
+        Iniciado
+        En Desarrollo
+        Terminado
+        Null
+    }
+
+    enum EstadoInscripcion{
+        Aceptada
+        Rechazada
+        Pendiente
+    }
+
+enum Level {
+    Principiante
+    Intermedio
+    Avanzado
+}
+
+type Usuarios{
+    _id:ID!
+    identificacion: String!
+    nombreCompleto: String!
+    correo: String!
+    contrasena: String!
+    rol: Rol!
+    estado: Estado!
+}
+
+type Proyectos{
+    _id:ID!
+    idproyecto:String!
+    nombreProyecto:String!
+    objetivosGenerales:String!
+    objetivosEspecificos:String!
+    presupuesto:String
+    fechaInicio: String
+    fechaTerminacion: String
+    identificacionLider:String
+    nombreLider: String
+    estado:EstadoProyecto!
+    faseProyecto:Faseproyecto
+}
+
+type InscripcionProyectos{
+    _id:ID!
+    idproyecto:String
+    identificacionEstudiante:String
+    estado:EstadoInscripcion
+    fechaIngreso: String
+    fechaEgreso: String
+}
+
+type Avances{
+    _id:ID!
+    idProyecto:String
+    fechaAvance: String!
+    descripcion:String
+    observaciones: String
+}
+
+type Query {
+    "Devuelve todos los Usuarios"
+        getUsuarios: [Usuarios]
+    "Devuelve un Usuario por ID"
+        getUsuarioID (id: ID!): Usuarios
+    "Devuelve un Usuario por su Cédula"
+        getUsuarioByCedula(identificacion: String!): Usuarios
+    "Valida las credenciales del usuario para el ingreso"
+        getLogin(correo:String!,contrasena:String!):Usuarios
+
+    "Devuelve Todos los Proyectos"
+        getProyectos: [Proyectos]
+    "Devuelve un Proyecto por ID"
+        getProyectoID (id: ID!): Proyectos
+
+    "Devuelve Todas las Inscripciones"
+        getInscripciones: [InscripcionProyectos]
+    "Devuelve una Inscripcion por ID"
+        getInscripcionID (id: ID!): InscripcionProyectos
+
+    "Devuelve Todos los Avances"
+        getAvances: [Avances]
+    "Devuelve un Avance por ID"
+        getAvanceID (id: ID!): Avances
+
+
+}
+
+input CourseInput{
+ title: String!
+    teacher: String
+    description: String!
+    topic: String
+    level: Level
+}
+
+input UsuariosInput{
+    identificacion:String!
+    nombreCompleto: String!
+    correo: String!
+    contrasena: String!
+    rol: Rol!
+    estado: Estado!
+}
+
+input ProyectosInput{
+    idproyecto:String!
+    nombreProyecto:String!
+    objetivosGenerales:String!
+    objetivosEspecificos:String!
+    presupuesto:String
+    fechaInicio: String
+    fechaTerminacion: String
+    identificacionLider:String
+    nombreLider: String
+    estado:EstadoProyecto!
+    faseProyecto:Faseproyecto
+}
+
+input AvancesInput{
+    idProyecto:String
+    fechaAvance: String!
+    descripcion:String
+    observaciones: String
+}
+
+input InscripcionInput{
+    idproyecto:String
+    identificacionEstudiante:String
+    estado:EstadoInscripcion
+    fechaIngreso: String
+    fechaEgreso: String
+}
+
+
+type Mutation {
+    "Crea un usuario"
+        createUsuario(input: UsuariosInput!): Usuarios
+    "Edita un Usuario"
+        editUsuario(_id:ID!,input:UsuariosInput):Usuarios
+    "Elimina un usuario"
+        deleteUsuario(_id:ID!):Boolean
+
+    "Crea un Proyecto"
+        createProyecto(input: ProyectosInput!): Proyectos
+    "Edita un Proyecto"
+        editProyecto(_id:ID!,input:ProyectosInput):Proyectos
+    "Elimina un Proyecto"
+        deleteProyecto(_id:ID!):Boolean
+
+    "Crea un Avance"
+        createAvance(input: AvancesInput!): Avances
+    "Edita un Avance"
+        editAvance(_id:ID!,input:AvancesInput):Avances
+    "Elimina un Avance"
+        deleteAvance(_id:ID!):Boolean
+
+    "Crea una Inscripcion"
+        createInscripcion(input: InscripcionInput!): InscripcionProyectos
+    "Edita una Inscripcion"
+        editInscripcion(_id:ID!,input:InscripcionInput):InscripcionProyectos
+    "Elimina una Inscripcion"
+        deleteInscripcion(_id:ID!):Boolean
+}
