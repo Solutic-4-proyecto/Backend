@@ -23,10 +23,8 @@ avancesCtrl.createAvances = async (req, res) => {
       observaciones: observaciones,
     });
     await nuevoAvance.save();
-    console.log(nuevoAvance);
     res.json({ message: "Avance Almacenado Exitosamente" });
   } catch (e) {
-    console.log(e);
     res.json(e.errmsg);
   }
 };

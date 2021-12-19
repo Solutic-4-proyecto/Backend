@@ -46,7 +46,7 @@ type Usuarios {
 
 type Proyectos {
   _id: ID!
-  idproyecto: String!
+  idProyecto: String!
   nombreProyecto: String!
   objetivosGenerales: String!
   objetivosEspecificos: String!
@@ -120,7 +120,7 @@ input UsuariosInput {
 }
 
 input ProyectosInput {
-  idproyecto: String!
+  idProyecto: String!
   nombreProyecto: String!
   objetivosGenerales: String!
   objetivosEspecificos: String!
@@ -151,29 +151,29 @@ input InscripcionInput {
 type Mutation {
   "Crea un usuario"
   createUsuario(input: UsuariosInput!): Usuarios
-  "Edita un Usuario"
-  editUsuario(_id: String!, input: UsuariosInput): Usuarios
+  "Actualiza un Usuario"
+  updateUsuario(_id: String!, input: UsuariosInput): Usuarios
   "Elimina un usuario"
   deleteUsuario(_id: String!): Boolean
 
   "Crea un Proyecto"
   createProyecto(input: ProyectosInput!): Proyectos
-  "Edita un Proyecto"
-  editProyecto(_id: String!, input: ProyectosInput): Proyectos
+  "Actualiza un Proyecto"
+  updateProyecto(_id: String!, input: ProyectosInput): Proyectos
   "Elimina un Proyecto"
   deleteProyecto(_id: String!): Boolean
 
   "Crea un Avance"
   createAvance(input: AvancesInput!): Avances
-  "Edita un Avance"
-  editAvance(_id: String!, input: AvancesInput): Avances
+  "Actualiza un Avance"
+  updateAvance(_id: String!, input: AvancesInput): Avances
   "Elimina un Avance"
   deleteAvance(_id: String!): Boolean
 
   "Crea una Inscripcion"
   createInscripcion(input: InscripcionInput!): InscripcionProyectos
-  "Edita una Inscripcion"
-  editInscripcion(_id: String!, input: InscripcionInput): InscripcionProyectos
+  "Actualiza una Inscripcion"
+  updateInscripcion(_id: String!, input: InscripcionInput): InscripcionProyectos
   "Elimina una Inscripcion"
   deleteInscripcion(_id: String!): Boolean
 }

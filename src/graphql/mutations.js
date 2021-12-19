@@ -19,21 +19,16 @@ module.exports = {
   },
 
   createProyecto: async (root, { input }) => {
-    const defaults = {
-      estado: "Inactivo",
-      fase: "Nulo",
-    };
-    const newproyecto = Object.assign(defaults, input);
     let db;
     let proyecto;
     try {
       db = await connectDb();
-      proyecto = await db.collection("proyectos").insertOne(newproyecto);
-      newproyecto._id = proyecto.insertedId;
+      proyecto = await db.collection("proyectos").insertOne(input);
+      input._id = proyecto.insertedId;
     } catch (error) {
       errorHandler(error);
     }
-    return newproyecto;
+    return input;
   },
 
   createAvance: async (root, { input }) => {
@@ -62,7 +57,7 @@ module.exports = {
     return input;
   },
 
-  editUsuario: async (root, { _id, input }) => {
+  updateUsuario: async (root, { _id, input }) => {
     let db;
     let usuario;
     try {
@@ -75,7 +70,7 @@ module.exports = {
     return usuario;
   },
 
-  editProyecto: async (root, { _id, input }) => {
+  updateProyecto: async (root, { _id, input }) => {
     let db;
     let proyecto;
     try {
@@ -88,7 +83,7 @@ module.exports = {
     return proyecto;
   },
 
-  editAvance: async (root, { _id, input }) => {
+  updateAvance: async (root, { _id, input }) => {
     let db;
     let avance;
     try {
@@ -101,7 +96,7 @@ module.exports = {
     return avance;
   },
 
-  editInscripcion: async (root, { _id, input }) => {
+  updateInscripcion: async (root, { _id, input }) => {
     let db;
     let inscripcion;
     try {
