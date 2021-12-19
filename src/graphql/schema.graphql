@@ -55,15 +55,15 @@ type Proyectos {
   fechaTerminacion: String
   identificacionLider: String
   nombreLider: String
-  estado: EstadoProyecto!
-  faseProyecto: Faseproyecto
+  estado: String!
+  faseProyecto: String
 }
 
 type InscripcionProyectos {
   _id: ID!
   idproyecto: String
   identificacionEstudiante: String
-  estado: EstadoInscripcion
+  estado: String
   fechaIngreso: String
   fechaEgreso: String
 }
@@ -80,7 +80,7 @@ type Query {
   "Devuelve todos los Usuarios"
   getUsuarios: [Usuarios]
   "Devuelve un Usuario por ID"
-  getUsuarioID(id: ID!): Usuarios
+  getUsuarioId(_id: String!): Usuarios
   "Devuelve un Usuario por su Cédula"
   getUsuarioByCedula(identificacion: String!): Usuarios
   "Valida las credenciales del usuario para el ingreso"
@@ -89,17 +89,17 @@ type Query {
   "Devuelve Todos los Proyectos"
   getProyectos: [Proyectos]
   "Devuelve un Proyecto por ID"
-  getProyectoID(id: ID!): Proyectos
+  getProyectoId(_id: String!): Proyectos
 
   "Devuelve Todas las Inscripciones"
   getInscripciones: [InscripcionProyectos]
   "Devuelve una Inscripcion por ID"
-  getInscripcionID(id: ID!): InscripcionProyectos
+  getInscripcionId(_id: String!): InscripcionProyectos
 
   "Devuelve Todos los Avances"
   getAvances: [Avances]
   "Devuelve un Avance por ID"
-  getAvanceID(id: ID!): Avances
+  getAvanceId(_id: String!): Avances
 }
 
 input CourseInput {
@@ -107,7 +107,7 @@ input CourseInput {
   teacher: String
   description: String!
   topic: String
-  level: Level
+  level: String
 }
 
 input UsuariosInput {
@@ -129,8 +129,8 @@ input ProyectosInput {
   fechaTerminacion: String
   identificacionLider: String
   nombreLider: String
-  estado: EstadoProyecto!
-  faseProyecto: Faseproyecto
+  estado: String!
+  faseProyecto: String
 }
 
 input AvancesInput {
@@ -143,7 +143,7 @@ input AvancesInput {
 input InscripcionInput {
   idproyecto: String
   identificacionEstudiante: String
-  estado: EstadoInscripcion
+  estado: String
   fechaIngreso: String
   fechaEgreso: String
 }
@@ -152,28 +152,28 @@ type Mutation {
   "Crea un usuario"
   createUsuario(input: UsuariosInput!): Usuarios
   "Edita un Usuario"
-  editUsuario(_id: ID!, input: UsuariosInput): Usuarios
+  editUsuario(_id: String!, input: UsuariosInput): Usuarios
   "Elimina un usuario"
   deleteUsuario(_id: String!): Boolean
 
   "Crea un Proyecto"
   createProyecto(input: ProyectosInput!): Proyectos
   "Edita un Proyecto"
-  editProyecto(_id: ID!, input: ProyectosInput): Proyectos
+  editProyecto(_id: String!, input: ProyectosInput): Proyectos
   "Elimina un Proyecto"
-  deleteProyecto(_id: ID!): Boolean
+  deleteProyecto(_id: String!): Boolean
 
   "Crea un Avance"
   createAvance(input: AvancesInput!): Avances
   "Edita un Avance"
-  editAvance(_id: ID!, input: AvancesInput): Avances
+  editAvance(_id: String!, input: AvancesInput): Avances
   "Elimina un Avance"
-  deleteAvance(_id: ID!): Boolean
+  deleteAvance(_id: String!): Boolean
 
   "Crea una Inscripcion"
   createInscripcion(input: InscripcionInput!): InscripcionProyectos
   "Edita una Inscripcion"
-  editInscripcion(_id: ID!, input: InscripcionInput): InscripcionProyectos
+  editInscripcion(_id: String!, input: InscripcionInput): InscripcionProyectos
   "Elimina una Inscripcion"
-  deleteInscripcion(_id: ID!): Boolean
+  deleteInscripcion(_id: String!): Boolean
 }
