@@ -13,7 +13,7 @@ const gql = require('graphql-tag');
 const app = express();
 
 //SETTINGS
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 5000);
 
 //ESTE ERA EL DE LOS ERRORES
 const typeDefs = readFileSync(
