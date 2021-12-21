@@ -61,7 +61,7 @@ type Proyectos {
 
 type InscripcionProyectos {
   _id: ID!
-  idproyecto: String
+  idProyecto: String
   identificacionEstudiante: String
   estado: String
   fechaIngreso: String
@@ -141,7 +141,7 @@ input AvancesInput {
 }
 
 input InscripcionInput {
-  idproyecto: String
+  idProyecto: String
   identificacionEstudiante: String
   estado: String
   fechaIngreso: String
